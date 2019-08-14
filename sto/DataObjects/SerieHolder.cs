@@ -41,7 +41,7 @@ namespace sto.DataObjects
                 case Stat.OnCaptcha:
                     return $"{Serie.Name}: {(from i in PreferdHosts where i.HastHostURL select i).Count()}/{PreferdHosts.Count}";
                 case Stat.Done:
-                    return "Done";
+                    return $"{Serie.Name} Done";
                 default:
                     return "";
             }
