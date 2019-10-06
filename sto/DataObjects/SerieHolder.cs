@@ -96,6 +96,29 @@ namespace sto.DataObjects
                     sw.WriteLine(JsonConvert.SerializeObject(Serie));
                     sw.Close();
 
+                    if (WorkingStat == Stat.OnCaptcha)
+                        foreach (var item in Serie.Staffeln)
+                        {
+                            var list = new List<List<string>>();
+                            foreach (var item2 in item.folgen)
+                            {
+                                var row = (from i in item2.Hosts where i.HastHostURL select i.HostURL).ToList();
+                                if (row.Count > 0)
+                                {
+                                    row.Insert(0, item2.Name);
+                                    list.Add(row);
+                                }
+                            }
+                            if (list.Count > 0)
+                            {
+                                if (!Directory.Exists(Path + "\\" + Serie.Name + item.Title))
+                                    Directory.CreateDirectory(Path + "\\" + Serie.Name + item.Title);
+                                sw = new StreamWriter(Path + "\\" + Serie.Name + item.Title + "\\link.json");
+                                sw.WriteLine(JsonConvert.SerializeObject(list, Formatting.Indented));
+                                sw.Close();
+                            }
+                        }
+
                     if (WorkingStat == Stat.OnCaptcha &&
                         PreferdHosts.Count == (from i in PreferdHosts where i.HastHostURL select i).Count())
                     {

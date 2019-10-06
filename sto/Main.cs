@@ -56,7 +56,7 @@ namespace sto
         private void Main_Shown(object sender, EventArgs e)
         {
             var d = new FolderBrowserDialog() { SelectedPath = @"C:\Users\kian\Desktop\workdir" };
-           // d.ShowDialog();
+            d.ShowDialog();
             workingDir = d.SelectedPath;
             LoadSetting();
 

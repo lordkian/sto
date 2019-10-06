@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "List To SH linux": {
+      "commandName": "Project",
+      "commandLineArgs": "\"youtube-dl -o '<FileName>' '<Link>'\" C:\\Users\\kian\\Desktop\\g -c 2"
+    }
+  }
+}
